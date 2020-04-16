@@ -5,13 +5,24 @@
  */
 package liststacktemplate;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
+
+
+
 /**
  *
  * @author Paul
  * @param <T>
  */
 public class MyList<T> {
-
+private List myList = new LinkedList();
+private ListNode first;
+private ListNode last;
+private Stack myStack = new Stack();
     /**
      * get the ith element stored in the list. Note that this does not return
      * the containing node, but the stored element in the node. Null if D.N.E.
@@ -20,7 +31,8 @@ public class MyList<T> {
      * @return
      */
     public T get(int i) {
-        throw new UnsupportedOperationException("Not supported yet.");
+  return (T)myList.get(i);
+      
     }
 
     /**
@@ -30,7 +42,11 @@ public class MyList<T> {
      * @return the modified list object
      */
     public MyList<T> add(T v) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(myList.isEmpty()){
+            last = new ListNode(v);
+        }
+        myList.add(v);
+        return this;
     }
 
     /**
@@ -44,9 +60,13 @@ public class MyList<T> {
         Be careful here! think about edge cases. If you choose to keep a
         'last' pointer, what if the element being removed is last?
          */
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(i==myList.size()){
+        last = new ListNode((T)myList.get(i));
+        }else{
+        myList.remove(i);   
     }
-
+        return (T) this;
+    }
     /**
      * returns the index of the element given. -1 if not found.
      *
@@ -54,7 +74,7 @@ public class MyList<T> {
      * @return the index or -1 if not found.
      */
     public int indexOf(T v) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return myList.lastIndexOf(v);
     }
 
     /**
@@ -66,7 +86,8 @@ public class MyList<T> {
      * ls.remove(3).remove(4)...
      */
     public MyList<T> remove(T v) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       myList.remove(v);
+       return this;
     }
 
     /**
@@ -75,7 +96,7 @@ public class MyList<T> {
      * @return the length/size.
      */
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return myList.size();
     }
 
     /**
@@ -84,7 +105,7 @@ public class MyList<T> {
      * @return true if list contains at least 1 element, false otherwise.
      */
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
+      return !myList.isEmpty();
     }
 
     /**
@@ -94,7 +115,13 @@ public class MyList<T> {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String r = "";
+        Iterator link = myList.iterator();
+        for(int i =0; i<myList.size();i++){
+            r+= myList.get(i)+"\t";
+        }
+          
+        return "MyList: "+r;
     }
 
 }

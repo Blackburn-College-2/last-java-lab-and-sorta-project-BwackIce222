@@ -5,12 +5,15 @@
  */
 package liststacktemplate;
 
+import java.util.Arrays;
+import java.util.Stack;
+
 /**
  *
  * @author Paul
  */
 public class MyStack<T> {
-
+    private Stack<T> stack = new Stack<>();
     MyList<T> arr = new MyList();
 
     /**
@@ -20,7 +23,8 @@ public class MyStack<T> {
      * @return return the stack to allow chaining. i.e. stack.push(1).push(2)...
      */
     public MyStack<T> push(T t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+     stack.addElement(t);
+     return this;
     }
 
     /**
@@ -31,7 +35,12 @@ public class MyStack<T> {
      * @return the top of the stack/removed element
      */
     public T pop() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(stack.isEmpty()){
+            System.out.println("I am empty");
+        }else{
+            return stack.remove(stack.size());
+        }
+       return (T) this;
     }
 
     /**
@@ -40,7 +49,7 @@ public class MyStack<T> {
      * @return the top element of the stack
      */
     public T peek() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return stack.get(stack.size());
     }
 
     /**
@@ -49,7 +58,7 @@ public class MyStack<T> {
      * @return true-contains elements; false otherwise.
      */
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return !stack.isEmpty();
     }
 
     /**
@@ -58,7 +67,7 @@ public class MyStack<T> {
      * @return
      */
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return stack.size();
     }
 
     /**
@@ -69,6 +78,6 @@ public class MyStack<T> {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Arrays.toString(stack.toArray());
     }
 }
